@@ -1,0 +1,4 @@
+function [x, y, theta] = HipFrame_l(q)
+    [x; y] = q(1:2) + [-0.05; -0.1];
+    theta = 
+end
