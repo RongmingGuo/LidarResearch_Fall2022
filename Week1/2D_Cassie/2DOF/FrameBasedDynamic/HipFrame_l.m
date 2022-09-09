@@ -1,8 +1,10 @@
 function [x, y, theta] = HipFrame_l(q)
+    l = 0.143; % pelvis frame to hip frame length
     % Obtain Mother Frame
-    B = [cos(q(3)), -sin(q(3)); sin(q(3)), cos(q(3))];
-    temp = q(1:2) + B * [-0.05; -0.1]; 
+    [x_m, y_m, theta_m] = PelvisFrame(q);
+    B_m = [cos(theta_m), -sin(theta_m); sin(theta_m), cos(theta_m)];
+    temp = [x_m; y_m] + B_m * [-l * cosd(50); -l * sind(50)]; 
     x = temp(1);
     y = temp(2);
-    theta = q(3) + q(4);
+    theta = theta_m + q(4);
 end
